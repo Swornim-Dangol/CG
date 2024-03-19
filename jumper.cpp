@@ -4,7 +4,7 @@
 #include <graphics.h>
 
 #define WIDTH 800
-#define HEIGHT 400
+#define HEIGHT 600
 #define GROUND_HEIGHT 50
 #define PLAYER_WIDTH 40
 #define PLAYER_HEIGHT 40
@@ -15,7 +15,7 @@
 #define OBSTACLE_COLOR LIGHTRED
 #define BACKGROUND_COLOR LIGHTBLUE
 #define GRAVITY 1
-#define JUMP_POWER 15
+#define JUMP_POWER 17
 
 int score = 0;
 
@@ -24,7 +24,7 @@ void draw_ground() {
     line(0, HEIGHT - GROUND_HEIGHT, WIDTH, HEIGHT - GROUND_HEIGHT);
 }
 
-void draw_player(int x, int y) {
+void draw_player(int x, int y){
     setcolor(PLAYER_COLOR);
     rectangle(x, y, x + PLAYER_WIDTH, y + PLAYER_HEIGHT);
     floodfill(x + PLAYER_WIDTH / 2, y + PLAYER_HEIGHT / 2, PLAYER_COLOR);
@@ -82,17 +82,16 @@ int check_collision(int playerX, int playerY, int obstacleX, int obstacleY) {
 
 int main() {
     int gd = DETECT, gm;
-    initgraph(&gd, &gm, "");
+    initwindow(800,800);
 
     int playerX = 50, playerY = HEIGHT - GROUND_HEIGHT - PLAYER_HEIGHT;
     int vy = 0;
     int isJumping = 0;
     int obstacleX = WIDTH - OBSTACLE_WIDTH;
     int obstacleY = HEIGHT - GROUND_HEIGHT - OBSTACLE_HEIGHT;
-
+	
     while (1) {
         cleardevice();
-
         draw_ground();
         draw_player(playerX, playerY);
         draw_obstacle(obstacleX, obstacleY);
